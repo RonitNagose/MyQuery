@@ -1,0 +1,18 @@
+<% layout("/layouts/boilerplate") %>
+<br>
+<form class="needs-validation" action="/<%= singleQuery._id %>/edit?_method=PUT" method="post" novalidate>
+<div class="editForm">
+    <div class="editPageHeading">
+        <h3>Username : <u><i>
+            <%= singleQuery.username %>
+        </i></u></h3>
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="description" class="form-label"><h2>Edit Your Old Query :</h2></label>
+        <input type="text" class="form-control" id="description" name="description" value="<%= singleQuery.description %>" style="width: 50vw;" required>
+    </div>
+    <br>
+        <button class="btn btn-dark">Update</button>
+</div>
+</form>

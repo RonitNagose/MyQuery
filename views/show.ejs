@@ -1,0 +1,91 @@
+<% layout("/layouts/boilerplate") %>
+<br>
+<div class="showPageHeading">
+    <h1 style="text-align: center;">Answer it if you can :)</h1>
+</div>
+<br>
+<div class="singlePageCard">
+<div class="card">
+    <div class="card-header">
+        <%= askedQuery.created_at.toLocaleString("en-IN") %>
+    </div>
+    <div class="card-body">
+        <figure>
+            <blockquote class="blockquote">
+                <p>
+                    <%= askedQuery.description %>
+                </p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                <%= askedQuery.username%>
+                <% if(askedQuery.owner) { %>
+                    <br>
+                    Question owner: <%= askedQuery.owner.username %>
+                <% } %>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<% if(currentUser) { %>
+    <form class="needs-validation" action="/<%= askedQuery._id %>" method="post"  novalidate>
+    <div class="inputOfAnswers">
+        <label for="answerInput" class="form-label"><b>Answer :</b>&nbsp;</label>
+        <input type="text" name="answerInput" id="answerInput" class="form-control" placeholder="Write your solution for the above Question" style="width: 40vw;" required>
+        <br>
+        <div class="answerbtn">
+            <button class="btn btn-dark">Add Answer</button>
+        </div>
+    </div>
+    </form>
+<% } else { %>
+    <div class="text-center">
+        <p>Please login to add an answer.</p>
+        <a href="/login" class="btn btn-dark">Login</a>
+    </div>
+<% } %>
+<br>
+<br>
+<% if(answers.length != 0){ %>
+    <h2 style="text-align: center;">Add your answer to the list 🖤</h2>
+<% } else{ %>
+    <h2 style="text-align: center;">Be the First one to Answer this Query 🖤</h2>
+<% } %>
+<br><br>
+
+<% for(let answer of answers){ %>
+    <div class="answers">
+        <div class="card">
+            <div class="card-header">
+                <%= answer.created_at.toLocaleString("en-IN") %>
+            </div>
+            <div class="card-body">
+                <figure>
+                    <blockquote class="blockquote">
+                        <p>
+                        Answer :    <%= answer.answer %>
+                        </p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        <%= answer.owner ? answer.owner.username : "Unknown User" %>
+                        <br><br>
+                        <% if(currentUser && answer.owner && String(answer.owner._id) === String(currentUser._id)) { %>
+                            <div class="answerCardbtns">
+                                <form action="/<%= askedQuery._id %>/<%= answer._id %>/answer/delete?_method=DELETE" method="POST">
+                                    <button class="btn btn-dark">Delete</button>
+                                </form>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <form action="/<%= askedQuery._id %>/<%= answer._id %>/answer/edit" method="GET">
+                                    <button class="btn btn-dark">Edit</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <br><br>
+<% } %>

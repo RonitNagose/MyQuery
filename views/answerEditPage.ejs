@@ -1,0 +1,20 @@
+<% layout("/layouts/boilerplate") %>
+<br><br>
+<form action="/<%= question._id%>/<%= answer._id%>/answer/edit?_method=PUT" method="POST">
+    <div class="editformContent">
+    <h1 style="text-align: center;">Edit Your Answer for the Question Below :)</h1>
+    <br><br>
+    <h4 style="text-align: center;">" <%=question.description%> "</h4>
+    <br><br>
+    <div class="answerEditBox col-6 offset-3">
+        <label for="editedAnswer" class="form-label"><h4>Answer :</h4></label>
+        <input type="text" class="form-control" id="editedAnswer" name="editedAnswer" value="<%= answer.answer %>" required>
+        <br><br>
+        <div class="editAnswerbtn">
+            <div class="answerBtnBox">
+            <button class="btn btn-dark">Update</button>
+            </div>
+        </div>
+    </div>
+    </div>
+</form>

@@ -1,0 +1,38 @@
+<% layout("/layouts/boilerplate") %>
+<br>
+<div class="showPageHeading">
+<h1 style="text-align: center;">Queries from all Over the World : )</h1>
+</div>
+<br>
+<div class="homePageCards">
+<% for(let singleQuestion of allQuestions) { %>
+    <div class="card mt-3" style="display: flex; align-self: center;">
+        <div class="card-header">
+            <%= singleQuestion.created_at.toLocaleString("en-IN") %>
+        </div>
+        <div class="card-body">
+            <figure>
+                <blockquote class="blockquote">
+                    <p><%= singleQuestion.description %></p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <%= singleQuestion.username%>
+                </figcaption>
+            </figure>
+            <div class="card-btns">
+            <form action="/<%= singleQuestion._id%> ">
+                <button class="btn btn-dark">Answer it</button>
+            </form>
+            <% if(currentUser && singleQuestion.owner && String(singleQuestion.owner._id) === String(currentUser._id)) { %>
+                <form action="/<%= singleQuestion._id%>/edit " method="get">
+                    <button class="btn btn-dark">Edit</button>
+                </form>
+                <form action="/<%= singleQuestion._id%>/delete?_method=DELETE " method="post">
+                    <button class="btn btn-dark">Delete</button>
+                </form>
+            <% } %>
+            </div>
+        </div>
+    </div>
+<% } %>
+</div>

@@ -1,0 +1,21 @@
+<% layout("/layouts/boilerplate") %>
+<br>
+<form class="row needs-validation" action="/newquery" method="post" novalidate >
+    <div class="formContent">
+        <h1>Create a New Query :)</h1>
+        <br>
+    <div class="mb-3 col-7">
+        <label for="username" class="form-label">Username</label>
+        <!-- Username is taken from the logged in user -->
+        <input type="text" class="form-control" id="username" name="username" value="<%= currentUser.username %>" readonly required>
+    </div>
+    <div class="mb-3 col-7">
+        <label for="description" class="form-label">Query</label>
+        <input type="text" class="form-control" id="description" name="description" required>
+    </div>
+    <br>
+    <div class="mb-3 col-7">
+        <button class="btn btn-dark">Create</button>
+    </div>
+    </div>
+</form>
