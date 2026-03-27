@@ -1,6 +1,6 @@
 MyQuery - Global Q&A Platform
 
-Video Demo: https://your-youtube-link-here
+Video Demo: https://youtu.be/B8L1VUKYVZ4?si=R2hWIl7ND5ZCgIiO
 
 ⸻
 
